@@ -1,0 +1,29 @@
+README
+
+==============================================================================
+ coding: utf-8
+ App to keep track of price matches from PriceSpy vs Our website.
+ Basic Logic: 
+ 1. Take product links and store pricing from store page
+ 2. Combine these new prices with the old price file in JSON format, preserving dates where applicable
+ 3. Display these and allow for 'ignoring' of products.
+==============================================================================
+
+The priceSpyScraper.py script downloads the products from our shop page on Price spy in the following format:
+
+		"product",
+        "theirPrice",
+        "ourPrice",
+        "link",
+        "ignoreStatus" (always 0 at this stage), 
+        "productID",
+        "dateScraped"
+
+The data is then added to the 'prices.json' file that adds 
+
+"dateScraped",
+"dateIgnored"
+
+This is then displayed via javascript on the page 'index.php'.
+
+When ignored (or unignored), products are passed to 'writeIgnore.php'. This writes the 'ignoreStatus' variable to the 'prices.json' file.

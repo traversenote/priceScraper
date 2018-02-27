@@ -1,0 +1,56 @@
+.header{
+	font-weight:bold;
+    background: #999999;
+    padding: 10px;
+}
+.alt{
+	background: #cccccc;
+}
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+   border: 1px solid black;
+}
+.col-md-*{
+    margin: 0;
+}
+.row{
+    margin:0;
+}
+.navLink a:link{
+    display: block;
+    margin-bottom:1px;
+}
+.navLink a:hover{
+    margin-bottom:0;
+    border-bottom: solid 1px;
+
+}
+.prodRows {
+    display: block;
+    padding:5px 0 5px 5px;
+    margin: 0px 0 0px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+.prodRows:hover{
+    display: block;
+    background-color: #ffff99;
+}
+.loading{
+    display:hide;
+}
+.show{
+    display:block;
+    
+    background-color:#ffff99;
+}
+#mainContent{
+    padding:0;
+    overflow: hidden;
+}
+#tableContent{
+    padding:0;
+
+}

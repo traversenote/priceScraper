@@ -1,0 +1,387 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.php",
+			"settings":
+			{
+				"buffer_size": 2481,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 64.0,
+		"last_filter": "pastry num",
+		"selected_items":
+		[
+			[
+				"pastry num",
+				"Text Pastry: Range (numeric)"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Add Channel"
+			]
+		],
+		"width": 497.0
+	},
+	"console":
+	{
+		"height": 130.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/jason/Documents/workspace/scraperGen"
+	],
+	"file_history":
+	[
+		"/run/user/1000/gvfs/sftp:host=10.3.3.100/opt/webscripts/scraper/pm.js",
+		"/run/user/1000/gvfs/sftp:host=10.3.3.100/opt/webscripts/scraper/index.php",
+		"/run/user/1000/gvfs/sftp:host=10.3.3.100/opt/webscripts/scraper/scraper.css",
+		"/run/user/1000/gvfs/sftp:host=10.3.3.100/opt/webscripts/scraper/README",
+		"/home/jason/Documents/workspace/scraper/writeIgnore.php",
+		"/home/jason/Documents/workspace/scraper/priceSpyScraper.py",
+		"/home/jason/Documents/workspace/scraper/pm.js",
+		"/home/jason/Documents/workspace/scraper/pricesDisplay.php",
+		"/home/jason/Documents/workspace/scraper/test.php",
+		"/mnt/net/metaScraper/writeIgnore.php",
+		"/mnt/net/metaScraper/test.py",
+		"/mnt/net/metaScraper/test.php",
+		"/mnt/net/metaScraper/includes/scraper.css",
+		"/home/jason/Documents/workspace/javascriptTest.html",
+		"/home/jason/Documents/workspace/psDn.json",
+		"/mnt/net/metaScraper/priceSpyScraper.py",
+		"/mnt/net/metaScraper/pricesDisplay.php",
+		"/mnt/net/metaScraper/pricesDisplay.html",
+		"/mnt/net/metaScraper/scrapers.py",
+		"/mnt/net/metaScraper/parse2.py",
+		"/home/jason/Documents/workspace/scrapers/old/pricescraper2.py",
+		"/mnt/net/pricescraper/pricescraper.py",
+		"/run/user/1000/gvfs/sftp:host=10.3.3.100/opt/webscripts/pricescraper/pricescraper.py",
+		"/mnt/net/metaScraper/includes/brands/avwbrands.txt",
+		"/mnt/net/metaScraper/includes/brands/pmbrands.txt",
+		"/mnt/net/metaScraper/includes/brands/hnbrands.txt",
+		"/mnt/net/metaScraper/scraper.css",
+		"/mnt/net/metaScraper/test.pu",
+		"/mnt/net/metaScraper/pricesRanked.json",
+		"/mnt/net/metaScraper/keyfile.py",
+		"/mnt/net/metaScraper/printTable.py",
+		"/mnt/net/metaScraper/keyfileGen.py",
+		"/mnt/net/metaScraper/keyDisplay.py",
+		"/mnt/net/var/www/html/prices.html",
+		"/mnt/net/opt/webscripts/metaScraper/pricesRanked.html",
+		"/mnt/net/opt/webscripts/metaScraper/keyfileGen.py",
+		"/mnt/net/opt/webscripts/metaScraper/keyDisplay.py",
+		"/mnt/net/opt/webscripts/metaScraper/keyfile.py",
+		"/home/jason/workspace/scrapers/keys/keyTest.py",
+		"/mnt/net/opt/webscripts/metaScraper/output.py",
+		"/opt/dailyScripts/dailyHours.py",
+		"/mnt/net/opt/webscripts/metaScraper/parse2.py",
+		"/mnt/net2/priceScrapper/run.py",
+		"/mnt/net2/priceScrapper/app/templates/test.html",
+		"/mnt/net2/priceScrapper/app/templates/about.html",
+		"/mnt/net2/priceScrapper/app/templates/index.html",
+		"/mnt/net2/priceScrapper/app/templates/base.html",
+		"/mnt/net2/priceScrapper/app/views.py",
+		"/mnt/net2/priceScrapper/config.py",
+		"/mnt/net2/priceScrapper/hello.py",
+		"/home/jason/workspace/PyScripts/hours.py",
+		"/home/jason/Downloads/imageTest.html",
+		"/mnt/net2/freightRegister/dbFunction.py",
+		"/mnt/net2/freightRegister/dbTest.py",
+		"/mnt/net2/freightRegister/ticketTest.py",
+		"/mnt/net2/freightRegister/sqalchemyTest.py",
+		"/mnt/net2/index.php",
+		"/mnt/net/index.html",
+		"/home/jason/workspace/PyScripts/freightStatus.py",
+		"/mnt/net/freightRegister/dbCredentials.php",
+		"/home/jason/workspace/PyScripts/testDir/walkTest.py",
+		"/home/jason/workspace/VirtualboxBuild.sh",
+		"/home/jason/workspace/WebTemplate/index.php",
+		"/home/jason/workspace/PyScripts/flaskr/flaskr/templates/layout.html",
+		"/home/jason/workspace/PyScripts/flaskr/flaskr/templates/show_entries.html",
+		"/home/jason/workspace/PyScripts/flaskr/flaskr/templates/login.html",
+		"/home/jason/workspace/PyScripts/flaskr/flaskr/static/style.css",
+		"/home/jason/workspace/PyScripts/flaskr/flaskr/flaskr.py",
+		"/home/jason/workspace/PyScripts/flaskr/flaskr/__init__.py",
+		"/home/jason/workspace/PyScripts/flaskr/MANIFEST.in",
+		"/home/jason/workspace/PyScripts/flaskr/setup.py",
+		"/home/jason/workspace/PyScripts/flaskr/flaskr.py",
+		"/home/jason/workspace/PyScripts/metaScraper/parse2.py",
+		"/home/jason/workspace/PyScripts/metaScraper/scrapers.py",
+		"/home/jason/workspace/PyScripts/dirTest/app/views.py",
+		"/home/jason/.cache/kioexec/krun/19930_0_index.php",
+		"/home/jason/workspace/PyScripts/dirTest/app/templates/index.php",
+		"/home/jason/workspace/PyScripts/dirTest/app/templates/base.php",
+		"/home/jason/workspace/PyScripts/flask/app/templates/index.html",
+		"/home/jason/workspace/PyScripts/flask/app/templates/about.html",
+		"/home/jason/workspace/PyScripts/flask/howTo.txt",
+		"/home/jason/workspace/PyScripts/flask/app/views.py",
+		"/home/jason/workspace/PyScripts/flask/app/templates/base.html",
+		"/home/jason/workspace/PyScripts/flask/run.py",
+		"/home/jason/workspace/PyScripts/flask/app/__init__.py",
+		"/home/jason/workspace/PyScripts/flask/config.py",
+		"/home/jason/workspace/PyScripts/flask/flaskTest.py",
+		"/home/jason/workspace/PyScripts/flaskTest.py",
+		"/home/jason/workspace/PyScripts/flask/env.log",
+		"/home/jason/Documents/SyncDocsLocal/shops/InstallerJobDescription.txt",
+		"/home/jason/Documents/SyncDocsLocal/pCloud/NetNeutrality.txt",
+		"/home/jason/Downloads/oppoPics/trademeDescription.txt",
+		"/home/jason/Downloads/audiobooks/convert.py",
+		"/home/jason/Downloads/audiobooks/remove.py",
+		"/home/jason/workspace/PyScripts/walkTest.py",
+		"/home/jason/workspace/PyScripts/customerExport.py",
+		"/home/jason/Downloads/audiobooks/raw/convert.py",
+		"/home/jason/workspace/pythonMachineLearning/verCheck.py",
+		"/home/jason/workspace/pythonMachineLearning/import.py",
+		"/mnt/net/python/first.py",
+		"/home/jason/Downloads/html/index.php",
+		"/home/jason/Downloads/chcRebuildRepair/repairRegister/index.php",
+		"/home/jason/Downloads/chcRebuildRepair/repairRegister/includes/record.php",
+		"/home/jason/Documents/SyncDocsLocal/shops/technical/Linux_Commands.txt",
+		"/home/jason/Downloads/chcRebuildRepair/repairRegister/local/dbCredentials.php",
+		"/home/jason/Downloads/chcRebuildRepair/repairRegister/local/functions.php",
+		"/home/jason/Downloads/dbBackup_20171123.data",
+		"/mnt/net/var/www/html/index.html",
+		"/mnt/net/var/www/html/directory.css",
+		"/mnt/net/var/www/html/repairRegister/index.php",
+		"/mnt/net/var/www/html/index.php",
+		"/mnt/net/var/www/html/index.bootstrap.php",
+		"/mnt/net/var/www/htmlBackup/test/newfile.php",
+		"/mnt/net/var/www/htmlBackup/index.php",
+		"/mnt/net/var/www/html/index.old.php",
+		"/mnt/net/var/www/html/index.html.old",
+		"/mnt/net/syslog-ng.conf",
+		"/mnt/net/syslog.conf.old",
+		"/home/jason/home.sh",
+		"/mnt/net/index.php",
+		"/home/jason/workspace/WebTemplate/index.html",
+		"/mnt/net/style.css",
+		"/home/jason/.cache/kioexec/krun/2559_0_munin-node.conf",
+		"/home/jason/.cache/kioexec/krun/13504_0_logstash-plain.log",
+		"/home/jason/.cache/kioexec/krun/13385_0_logstash-plain.log",
+		"/home/jason/.cache/kioexec/krun/13445_0_logstash-plain.log",
+		"/home/jason/Documents/projects/logstash/update.sh",
+		"/home/jason/.cache/kioexec/krun/9290_0_index.html"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 98.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"^\\n",
+			"return",
+			"priceFile",
+			"json[i][4]",
+			"json[i][2]",
+			"price2",
+			"price1",
+			"json[i][1]",
+			"stripSlashes",
+			"console.log",
+			"link",
+			"1"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"",
+			"json[i].ignoreStatus",
+			"json[i].ourPrice",
+			"ourPrice",
+			"theirPrice",
+			"json[i].price1",
+			"price1"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2481,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 90.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 319.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "metaScraper.sublime-project",
+	"replace":
+	{
+		"height": 68.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 351.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
