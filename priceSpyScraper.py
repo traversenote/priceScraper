@@ -1,166 +1,201 @@
 #!/usr/bin/python
-#==============================================================================
+# ==============================================================================
 # coding: utf-8
-# Program to check whether pricing needs to be adjusted per price-match policy
-# Basic Logic: 
-# 1.Take product links and store pricing from store page
-#2. Dump as JSON
-#==============================================================================
-
-
+# Program to check whether pricing against a specific store
+# Basic Logic:
+# 1. Take product links and store pricing from store page
+# 2. Dump as JSON
+# ==============================================================================
 
 # TODO: combine new and current files, preserving ignore status, etc
-#       Add date scraped to each product.
-#       Add record of store with best price - aggressor store
-#       Output reports to a folder with the file labeled as a date.
-#       Set first json object as date, as it can be the same for all prices in the file. Parse on input.
+#   Add record of store with best price - aggressor store
 
-
-##Dependancies:
+# Dependancies:
 from __future__ import print_function
 from lxml import html
 from decimal import Decimal
 import requests
-import pycurl
-from io import BytesIO
 import time
 import json
-from pprint import pprint
 import sys
-import time
-import random
 
-storeID = "8327"
-#Load the pages required to parse and read them
-pagelist=['http://pricespy.co.nz/shop.php?f='+storeID+'&lista=prod','http://pricespy.co.nz/shop.php?f='+storeID+'&lista=prod&s=100',
-        'http://pricespy.co.nz/shop.php?f='+storeID+'&lista=prod&s=200','http://pricespy.co.nz/shop.php?f='+storeID+'&lista=prod&s=300',
-        'http://pricespy.co.nz/shop.php?f='+storeID+'&lista=prod&s=400','http://pricespy.co.nz/shop.php?f='+storeID+'&lista=prod&s=500', 
-        'http://pricespy.co.nz/shop.php?f='+storeID+'&lista=prod&s=600', 'http://pricespy.co.nz/shop.php?f='+storeID+'&lista=prod&s=700']
-#pagelist=['http://pricespy.co.nz/shop.php?f='+storeID+'&lista=prod']
+outFile = 'prices.json'
+prodURL = 'http://pricespy.co.nz/product.php?p='
+# ID of the target store
+tgStore = '8327'
 
-#######################
-#    Debug            #
-#######################
-# Set to 1 to output debug information to terminal
-debug = 1
-#######################
-
-#Reset useful elements for ease of use
-products = []
-productPage = []
-ourPrice = []
-bestPrice = []
-ourPriced = []
-bestPriced = []
-prod_id=[]
-results=[]
-
-outFile = 'pricespy.json'
+# Load the pages required to parse and read them
+pagelist = [
+    'http://pricespy.co.nz/shop.php?f=' + tgStore + '&lista=prod',
+    'http://pricespy.co.nz/shop.php?f=' + tgStore + '&lista=prod&s=100',
+    'http://pricespy.co.nz/shop.php?f=' + tgStore + '&lista=prod&s=200',
+    'http://pricespy.co.nz/shop.php?f=' + tgStore + '&lista=prod&s=300',
+    'http://pricespy.co.nz/shop.php?f=' + tgStore + '&lista=prod&s=400',
+    'http://pricespy.co.nz/shop.php?f=' + tgStore + '&lista=prod&s=500',
+    'http://pricespy.co.nz/shop.php?f=' + tgStore + '&lista=prod&s=600',
+    'http://pricespy.co.nz/shop.php?f=' + tgStore + '&lista=prod&s=700']
 
 #######################
 #    Debug            #
 #######################
-if debug == 1:
+# To output Debugging information, add '--debug-level=' followed by 1, 2, or 3
+debug = 0
+try:
+    if "--" in sys.argv[1]:
+        if sys.argv[1] == '--debug-level=1':
+            debug = 1
+            print("Debug set to level 1 'Basic'")
+        if sys.argv[1] == '--debug-level=2':
+            debug = 2
+            print("Debug set to level 2 'Normal'")
+        if sys.argv[1] == '--debug-level=3':
+            debug = 3
+            print("Debug set to level 3 'Verbose'")
+        else:
+            print(
+                """Unknown option.
+                For Debugging, the command is '--debug-level=' followed by 1, 2, or 3""")
+except IndexError:
+    pass
+
+#######################
+
+# Reset useful elements for ease of use
+prod = []
+pPage = []
+tgPrice = []
+bPrice = []
+tgPriced = []
+bPriced = []
+prodID = []
+results = []
+
+#######################
+#    Debug            #
+#######################
+if debug >= 1:
     print("Fetching Pages")
 #######################
-#Use xPath to find useful elements in pages
-pn=len(pagelist)
+# Use xPath to find useful elements in pages
+pn = len(pagelist)
 for p in range(0, pn):
 
     #######################
     #    Debug            #
     #######################
-    if debug == 1:
+    if debug >= 1:
         print('.', end='')
         sys.stdout.flush()
     #######################
     page = requests.get(pagelist[p])
     tree = html.fromstring(page.content)
-    
-    products = products + tree.xpath('//td[2]/a/text()')
-    productPage = productPage + tree.xpath('//td[2]/a/@href')
-    ourPrice = ourPrice + (tree.xpath('//td[4]/a/text()'))
-    bestPrice = bestPrice + (tree.xpath('//td[5]/a/text()|//td[5]/span/a/text()'))
 
-num=len(products)  
-errorflag=[None] * num
-#When alternative prices are avilable, the first thing the script sees instead of the price is '*'   
-for q in range(0,num):
-    if '*' in bestPrice[q]:
-        del bestPrice[q]
+    prod = prod + tree.xpath('//td[2]/a/text()')
+    pPage = pPage + tree.xpath('//td[2]/a/@href')
+    tgPrice = tgPrice + (tree.xpath('//td[4]/a/text()'))
+    bPrice = bPrice + (tree.xpath(
+        '//td[5]/a/text()|//td[5]/span/a/text()'))
 
-#Convert Price to decimal list (Strip non numeric characters)
-for d in range(0,num):
-    stripa= ourPrice[d].strip('$')
+pLen = len(prod)
+errorflag = [None] * pLen
+
+# When alternative prices are avilable,
+# the first thing the script sees instead of the price is '*'
+
+for q in range(0, pLen):
+    if '*' in bPrice[q]:
+        del bPrice[q]
+
+# Convert Price to decimal list (Strip non pLeneric characters)
+for d in range(0, pLen):
+    stripa = tgPrice[d].strip('$')
     stripa = stripa.replace(',', '')
-    stripb= bestPrice[d].strip('$')
-    stripb= stripb.replace(',', '')
-    ourPriced.append(Decimal(stripa))
+    stripb = bPrice[d].strip('$')
+    stripb = stripb.replace(',', '')
+    tgPriced.append(Decimal(stripa))
     if stripb != "No prices":
-        bestPriced.append(Decimal(stripb))
+        bPriced.append(Decimal(stripb))
     else:
-        bestPriced.append("0")
-    
-    pid=productPage[d].strip('/product.php?p=')
-    prod_id.append(pid)    
+        bPriced.append("0")
 
-#Compare Our price to other prices add to table of prices to go down
-for x in range(0, num):
-    # if bestPriced[x] < ourPriced[x]:
+    pid = pPage[d].strip('/product.php?p=')
+    prodID.append(pid)
+
+# Compare target price to other prices add to table of prices to go down
+for x in range(0, pLen):
+    # if bPriced[x] < tgPriced[x]:
     results.append({
-        "product":products[x],
-        "theirPrice":str(bestPriced[x]),
-        "ourPrice":str(ourPriced[x]),
-        "link":'http://pricespy.co.nz/product.php?p='+prod_id[x],
-        "ignoreStatus":"0", 
-        "productID": prod_id[x],
-        "dateScraped": time.strftime("%b %d %Y") })
+        "product": prod[x],
+        "theirPrice": str(bPriced[x]),
+        "ourPrice": str(tgPriced[x]),
+        "link": 'http://pricespy.co.nz/product.php?p=' + prodID[x],
+        "ignoreStatus": "0",
+        "dateIgnored": "0",
+        "productID": prodID[x],
+        "dateScraped": time.strftime("%b %d %Y")})
 
 #######################
 #    Debug            #
 #######################
-if debug == 1:
+if debug >= 1:
     print("\nStarting Output")
 #######################
 
+outProd = []
 
-
-oldInFile = "prices.json"
-
-outProducts = []
-outFile="prices.json"
-
-oldData = json.load(open(oldInFile))
+oldData = json.load(open(outFile))
 
 for line in results:
     for oldLine in oldData:
         if line['productID'] == oldLine['productID']:
-
-
             if (line['ignoreStatus'] != oldLine['ignoreStatus'] or
                 line['theirPrice'] != oldLine['theirPrice'] or
-                line['ourPrice'] != oldLine['ourPrice']):
-                    outProducts.append({
-                    "product":line['product'],
-                    "theirPrice":line['theirPrice'],
-                    "ourPrice": line['ourPrice'],
-                    "link":'http://pricespy.co.nz/product.php?p='+line['productID'],
-                    "ignoreStatus": oldLine['ignoreStatus'], 
-                    "productID": line['productID'],
-                    "dateScraped": line['dateScraped'],
-                    "dateIgnored": oldLine['dateIgnored'] })
+                    line['ourPrice'] != oldLine['ourPrice']):
+                #######################
+                #    Debug            #
+                #######################
+                if debug >= 3:
+                    print(
+                        "Appended Product: " + line['product'])
+                #######################
 
+                try:
+                    outProd.append({
+                        "product": line['product'],
+                        "theirPrice": line['theirPrice'],
+                        "ourPrice": line['ourPrice'],
+                        "link": prodURL + line['productID'],
+                        "ignoreStatus": oldLine['ignoreStatus'],
+                        "productID": line['productID'],
+                        "dateScraped": line['dateScraped'],
+                        "dateIgnored": oldLine['dateIgnored']})
+                except KeyError:
+                    outProd.append({
+                        "product": line['product'],
+                        "theirPrice": line['theirPrice'],
+                        "ourPrice": line['ourPrice'],
+                        "link": prodURL + line['productID'],
+                        "ignoreStatus": oldLine['ignoreStatus'],
+                        "productID": line['productID'],
+                        "dateScraped": line['dateScraped']})
 #               print(line['productID']+" and "+oldLine['productID'])
             else:
-                 outProducts.append({
-                    "product":line['product'],
-                    "theirPrice":line['theirPrice'],
+                #######################
+                #    Debug            #
+                #######################
+                if debug >= 3:
+                    print(
+                        "Added Product: " + line['product'])
+                #######################
+                outProd.append({
+                    "product": line['product'],
+                    "theirPrice": line['theirPrice'],
                     "ourPrice": line['ourPrice'],
-                    "link":'http://pricespy.co.nz/product.php?p='+line['productID'],
-                    "ignoreStatus": line['ignoreStatus'], 
-                    "productID": line['productID'], 
-                    "dateScraped": line['dateScraped'] })
+                    "link": prodURL + line['productID'],
+                    "ignoreStatus": line['ignoreStatus'],
+                    "productID": line['productID'],
+                    "dateScraped": line['dateScraped']})
 
-open(outFile, 'w').write(json.dumps(outProducts))
+output = open(outFile, 'w').write(json.dumps(outProd))
 
-#open(outFile, 'w').write(json.dumps(results))
+# open(outFile, 'w').write(json.dumps(results))
